@@ -11,7 +11,7 @@ class SmsController extends Controller
 {
     public function sendSms()
     {
-        $user = Client::find(3);
+        $user = Client::find(6);
 
 
         //$client->notify(new SmsSent('kjsdbjsjsjsksn'));
