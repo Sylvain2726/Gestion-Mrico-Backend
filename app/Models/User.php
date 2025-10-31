@@ -31,9 +31,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected static function booted()
     {
-        // static::addGlobalScope('user', function (Builder $builder) {
-        //     $builder->where('type', 'user');
-        // });
+        static::addGlobalScope('user', function (Builder $builder) {
+            $builder->where('type', 'user')->orWhereNull('type');
+        });
     }
 
     /**

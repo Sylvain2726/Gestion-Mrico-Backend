@@ -191,11 +191,11 @@ class ClientController extends Controller
      *         @OA\JsonContent(
      *             required={"name", "email", "tel"},
      *
-     *             @OA\Property(property="name", type="string", example="John Doe"),
-     *             @OA\Property(property="email", type="string", format="email", example="john.doe@example.com"),
      *             @OA\Property(property="tel", type="string", example="1234567890"),
      *             @OA\Property(property="lieu_naissance", type="string", example="Bamako"),
      *             @OA\Property(property="date_naissance", type="string", format="date", example="1990-01-15")
+     *             @OA\Property(property="email", type="string", format="email", example="john.doe@example.com"),
+     *             @OA\Property(property="tel", type="string", example="1234567890")
      *         )
      *     ),
      *

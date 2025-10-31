@@ -10,12 +10,12 @@ class Client extends User
     // Indique explicitement que ce modèle utilise la table 'users'
     protected $table = 'users';
 
-
-
     protected $fillable = [
         'name',
         'email',
         'tel',
+        'lieu_naissance',
+        'date_naissance',
         // 'password' est exclu ici
     ];
 
@@ -27,28 +27,29 @@ class Client extends User
      */
     protected static function booted()
     {
-        //static::removeGlobalScope('user');
-
-        // 1. Scope Global pour filtrer uniquement les clients
         static::addGlobalScope('client', function (Builder $builder) {
             $builder->where('type', 'client');
         });
 
-
-        // 2. Hook de création pour définir le type et le mot de passe
         static::creating(function (self $client) {
-            // Définit le type pour tous les nouveaux enregistrements de Client
             $client->type = 'client';
-
-            // IMPORTANT : S'assure que le mot de passe est null si non fourni
-            // (Nécessite que la colonne 'password' soit NULLABLE dans la DB)
             if (empty($client->password)) {
                 $client->password = null;
             }
         });
     }
 
-
+    /**
+     * Get the attributes that should be cast.
+     *
+     * @return array<string, string>
+     */
+    protected function casts(): array
+    {
+        return [
+            'date_naissance' => 'date',
+        ];
+    }
 
     public function prets()
     {
